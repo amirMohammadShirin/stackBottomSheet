@@ -9,5 +9,25 @@
         android:id="@+id/startFragment"
         android:name="com.example.navdemo.StartFragment"
         android:label="StartFragment"
-        tools:layout="@layout/fragment_start" />
+        tools:layout="@layout/fragment_start" >
+        <action
+            android:id="@+id/action_startFragment_to_bottomSheet1"
+            app:destination="@id/bottomSheet1" />
+    </fragment>
+
+    <dialog
+        tools:layout="@layout/bottom_sheet_n1"
+        android:id="@+id/bottomSheet1"
+        android:name="com.example.navdemo.BottomSheet1"
+        android:label="BottomSheet1" >
+        <action
+            android:id="@+id/action_bottomSheet1_to_bottomSheet2"
+            app:destination="@id/bottomSheet2" />
+    </dialog>
+
+    <dialog
+        tools:layout="@layout/bottom_sheet_n2"
+        android:id="@+id/bottomSheet2"
+        android:name="com.example.navdemo.BottomSheet2"
+        android:label="BottomSheet2" />
 </navigation>

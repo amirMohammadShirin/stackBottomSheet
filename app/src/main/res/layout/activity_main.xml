@@ -15,27 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <TextView
-            android:id="@+id/btnRed"
+            android:id="@+id/txtStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="red"
+            android:text="start"
             android:textSize="25dp"
             android:gravity="center"
             android:layout_marginLeft="50dp"
-            android:layout_gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/btnGreen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="green"
-            android:textSize="25dp"
-            android:layout_marginLeft="50dp"
-            android:gravity="center"
             android:layout_gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

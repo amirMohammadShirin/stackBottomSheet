@@ -6,48 +6,33 @@ import android.os.Looper
 import android.util.DisplayMetrics
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 
 
 class MainActivity() : AppCompatActivity() {
 
-    lateinit var btnRed: TextView
-    lateinit var btnGreen: TextView
+    lateinit var txtStart: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        btnRed = findViewById<TextView>(R.id.btnRed)
-        btnGreen = findViewById<TextView>(R.id.btnGreen)
+        txtStart = findViewById<TextView>(R.id.txtStart)
 
-        val bottomSheet1 = BottomSheet1(getWindowHeight())
-        val bottomSheet2 = BottomSheet2(getWindowHeight() - (getWindowHeight() / 8))
-
-        bottomSheet1.test = {
-            bottomSheet1.enter()
-            Handler(Looper.getMainLooper()).postDelayed({
-                bottomSheet2.show(supportFragmentManager, BottomSheet1.TAG)
-            }, 180)
-        }
-
-        btnRed.setOnClickListener {
-            bottomSheet1.show(supportFragmentManager, BottomSheet1.TAG)
-        }
-        btnGreen.setOnClickListener {
-
+        txtStart.setOnClickListener {
+            navigate(R.id.action_startFragment_to_bottomSheet1)
         }
     }
 
-    fun showBottomSheet1(cancelable: Boolean = true) {
-
-
+    fun navigate(action: Int) {
+        findNavController(R.id.nav_host_fragment).navigate(action)
     }
 
-    private fun getWindowHeight(): Int {
+    fun getHeight(): Int {
         val displayMetrics = DisplayMetrics()
-        windowManager.defaultDisplay.getMetrics(
+        windowManager?.defaultDisplay?.getMetrics(
             displayMetrics
         )
-        return displayMetrics.heightPixels
+        return displayMetrics.heightPixels ?: 1
     }
-
 }
