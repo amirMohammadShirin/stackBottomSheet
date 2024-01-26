@@ -1,0 +1,41 @@
+<resources xmlns:ns1="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.NavDemo" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="bottomSheetDialogTheme">@style/ModalBottomSheetDialog</item>
+
+    </style>
+
+    <style name="Theme.NavDemo" parent="Base.Theme.NavDemo" />
+
+    <style name="ModalBottomSheet" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="android:elevation" ns1:ignore="NewApi">0dp</item>
+        <item name="marginLeftSystemWindowInsets">true</item>
+        <item name="marginRightSystemWindowInsets">true</item>
+        <item name="paddingBottomSystemWindowInsets">true</item>
+        <item name="paddingTopSystemWindowInsets">true</item>
+        <item name="paddingLeftSystemWindowInsets">false</item>
+        <item name="paddingRightSystemWindowInsets">false</item>
+        <item name="shapeAppearance">@macro/m3_comp_sheet_bottom_docked_container_shape</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Material3.Corner.Top
+        </item>
+        <item name="shouldRemoveExpandedCorners">false</item>
+        <item name="backgroundTint">#00FFFFFF</item>
+    </style>
+
+    <style name="ModalBottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/ModalBottomSheet</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:windowAnimationStyle">@style/Animation.Material3.BottomSheetDialog
+        </item>
+        <item name="enableEdgeToEdge">true</item>
+    </style>
+
+    <style name="BottomSheetWindowAnimation" parent="Animation.AppCompat.Dialog">
+        <item name="android:windowEnterAnimation">@anim/m3_bottom_sheet_slide_in</item>
+        <item name="android:windowExitAnimation">@anim/m3_bottom_sheet_slide_out</item>
+    </style>
+
+</resources>
