@@ -3,15 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation_test2.xml"
     app:startDestination="@id/testFragment1">
-
-
     <fragment
         android:id="@+id/testFragment1"
         android:name="com.example.navdemo.test.TestFragment1"
         android:label="TestFragment1" >
-        <action
-            android:id="@+id/action_testFragment1_to_testFragment2"
-            app:destination="@id/testFragment2" />
     </fragment>
     <fragment
         android:id="@+id/testFragment2"
