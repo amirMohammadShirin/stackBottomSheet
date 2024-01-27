@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 
 
@@ -23,13 +24,11 @@ class BottomSheet1() : CustomBottomSheet() {
         const val TAG = "BottomSheet1"
     }
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<TextView>(R.id.txtNext)?.setOnClickListener {
             Handler(Looper.getMainLooper()).postDelayed({
-                findNavController().navigate(R.id.action_bottomSheet1_to_bottomSheet2)
+                nav()
             }, 180)
             enter()
         }
@@ -38,5 +37,12 @@ class BottomSheet1() : CustomBottomSheet() {
         }
     }
 
+    fun nav() {
+        findNavController().navigate(
+            R.id.action_bottomSheet1_to_bottomSheet2,
+            null,
+            NavOptions.Builder().setPopUpTo(R.id.action_bottomSheet1_to_bottomSheet2, true).build()
+        )
+    }
 
 }

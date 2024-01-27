@@ -3,31 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_test.xml"
-    app:startDestination="@id/startFragment">
+    app:startDestination="@id/fragment1">
 
     <fragment
         android:id="@+id/startFragment"
         android:name="com.example.navdemo.StartFragment"
         android:label="StartFragment"
-        tools:layout="@layout/fragment_start" >
+        tools:layout="@layout/fragment_start">
         <action
             android:id="@+id/action_startFragment_to_bottomSheet1"
             app:destination="@id/bottomSheet1" />
     </fragment>
 
-    <dialog
-        tools:layout="@layout/bottom_sheet_n1"
+    <fragment
         android:id="@+id/bottomSheet1"
         android:name="com.example.navdemo.BottomSheet1"
-        android:label="BottomSheet1" >
+        android:label="BottomSheet1"
+        tools:layout="@layout/bottom_sheet_n1">
         <action
             android:id="@+id/action_bottomSheet1_to_bottomSheet2"
             app:destination="@id/bottomSheet2" />
-    </dialog>
+    </fragment>
 
-    <dialog
-        tools:layout="@layout/bottom_sheet_n2"
+    <fragment
         android:id="@+id/bottomSheet2"
         android:name="com.example.navdemo.BottomSheet2"
-        android:label="BottomSheet2" />
+        android:label="BottomSheet2"
+        tools:layout="@layout/bottom_sheet_n2" />
+    <fragment
+        tools:layout="@layout/fragment_1"
+        android:id="@+id/fragment1"
+        android:name="com.example.navdemo.Fragment1"
+        android:label="Fragment1" >
+        <action
+            android:id="@+id/action_fragment1_to_fragment2"
+            app:destination="@id/fragment2" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_2"
+        android:id="@+id/fragment2"
+        android:name="com.example.navdemo.Fragment2"
+        android:label="Fragment2"/>
+
 </navigation>

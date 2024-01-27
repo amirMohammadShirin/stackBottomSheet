@@ -5,10 +5,14 @@ import android.animation.PropertyValuesHolder
 import android.app.Dialog
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.updateLayoutParams
+import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -23,6 +27,7 @@ abstract class CustomBottomSheet : BottomSheetDialogFragment() {
         dialog.setOnShowListener {
             setupFullHeight()
         }
+        isCancelable = false
         return dialog
     }
 
@@ -34,6 +39,11 @@ abstract class CustomBottomSheet : BottomSheetDialogFragment() {
             duration = 300
             start()
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        btBehavior?.state = BottomSheetBehavior.STATE_HALF_EXPANDED
     }
 
     fun exit() {
@@ -48,11 +58,11 @@ abstract class CustomBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun setupFullHeight() {
-        btBehavior = (this as? BottomSheetDialog)?.behavior
+        btBehavior = (this.dialog as? BottomSheetDialog)?.behavior
         btBehavior?.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 if (newState == BottomSheetBehavior.STATE_HIDDEN) {
-                    btBehavior?.state = BottomSheetBehavior.STATE_HALF_EXPANDED
+                    btBehavior?.state = BottomSheetBehavior.STATE_EXPANDED
                 }
             }
 
@@ -62,9 +72,11 @@ abstract class CustomBottomSheet : BottomSheetDialogFragment() {
         })
         val view = this.dialog?.findViewById<ConstraintLayout>(R.id.root)
         view?.updateLayoutParams {
-            height = (getHeight() * 3) / 4
+            height = ((getHeight() * 3) / 4)
         }
-        btBehavior?.state = BottomSheetBehavior.STATE_EXPANDED
+        btBehavior?.maxHeight = ((getHeight() * 3) / 4)
+        btBehavior?.peekHeight = (((getHeight() * 3) / 4)) / 2
+        btBehavior?.state = BottomSheetBehavior.STATE_HALF_EXPANDED
     }
 
     fun getHeight(): Int {

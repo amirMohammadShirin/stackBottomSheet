@@ -34,17 +34,11 @@ class BottomSheet2() : CustomBottomSheet() {
         const val TAG = "BottomSheet1"
     }
 
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
-        findNavController().addOnDestinationChangedListener(object : NavController.OnDestinationChangedListener{
-            override fun onDestinationChanged(
-                controller: NavController,
-                destination: NavDestination,
-                arguments: Bundle?
-            ) {
-                val t = destination
-            }
-        })
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        view.findViewById<TextView>(R.id.txtContent).setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
 }
