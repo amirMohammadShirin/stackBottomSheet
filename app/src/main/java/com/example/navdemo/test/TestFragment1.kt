@@ -49,6 +49,8 @@ class TestFragment1 : Fragment() {
 
         firstBehavior.updateState(STATE_HIDDEN)
         secondBehavior.updateState(STATE_EXPANDED)
+        println("SWEET b2 ${secondBottomSheet?.height}")
+        println("SWEET b1 ${firstBottomSheet?.height}")
 
         view.findViewById<TextView>(R.id.txtS1).setOnClickListener {
             firstBehavior.updateState(STATE_EXPANDED)
@@ -79,29 +81,30 @@ class TestFragment1 : Fragment() {
 
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 if (newState == STATE_EXPANDED)
-                    increaseSize()
+                    increaseSize(view?.findViewById<View>(R.id.lnr1)!!)
+
+                println("SWEET b2 ${secondBottomSheet?.height}")
+                println("SWEET b1 ${firstBottomSheet?.height}")
             }
         })
     }
 
-    fun increaseSize() {
+    fun increaseSize(animatedView: View) {
         val translation = PropertyValuesHolder.ofFloat("translationY", 1f)
         val scaleY = PropertyValuesHolder.ofFloat("scaleY", 1f)
         val scaleX = PropertyValuesHolder.ofFloat("scaleX", 1f)
-        val view = view?.findViewById<View>(R.id.lnr1)
-        ObjectAnimator.ofPropertyValuesHolder(view, translation, scaleX, scaleY).apply {
+        ObjectAnimator.ofPropertyValuesHolder(animatedView, translation, scaleX, scaleY).apply {
             duration = 300
             start()
         }
 
     }
 
-    fun decreaseSize() {
+    fun decreaseSize(animatedView: View) {
         val translation = PropertyValuesHolder.ofFloat("translationY", 1f)
         val scaleY = PropertyValuesHolder.ofFloat("scaleY", 0.9f)
         val scaleX = PropertyValuesHolder.ofFloat("scaleX", 0.9f)
-        val view = view?.findViewById<View>(R.id.lnr1)
-        ObjectAnimator.ofPropertyValuesHolder(view, translation, scaleX, scaleY).apply {
+        ObjectAnimator.ofPropertyValuesHolder(animatedView, translation, scaleX, scaleY).apply {
             duration = 300
             start()
         }
@@ -121,10 +124,15 @@ class TestFragment1 : Fragment() {
 
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 if (newState == STATE_EXPANDED)
-                    decreaseSize()
+                    decreaseSize(
+                        view?.findViewById<View>(R.id.lnr1)!!
+                    )
                 if (newState == STATE_HIDDEN)
-                    increaseSize()
+                    increaseSize(view?.findViewById<View>(R.id.lnr1)!!)
 
+
+                println("SWEET b2 ${secondBottomSheet?.height}")
+                println("SWEET b1 ${firstBottomSheet?.height}")
             }
         })
     }
